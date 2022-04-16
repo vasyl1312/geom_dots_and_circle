@@ -2,7 +2,7 @@
 const arrayX = []
 const arrayY = []
 var centerLength = 0
-const tabulationForCanvas = 300
+const tabulationForCanvas = 1000
 var centerX
 var centerY
 var chekedPoint1
@@ -17,13 +17,13 @@ function pushCoordinates(array) {
 }
 
 function createCoordinates() {
-  const point1 = [113, 22]
-  const point2 = [130, 59]
+  const point1 = [120, 22]
+  const point2 = [-130, 59]
   const point3 = [95, 65]
   const point4 = [77, 200]
   const point5 = [10, 10]
-  const point6 = [90, 100]
-  const point7 = [300, 100]
+  const point6 = [-90, 100]
+  const point7 = [-300, 100]
   const point8 = [39, 10]
   const point9 = [44, 600]
   const point10 = [91, 90]
@@ -77,12 +77,15 @@ function radiusPoint(arr1, arr2) {
       // не перевіряємо з нашими точками яких вже перевіряли
       lengthCheck = Math.sqrt(Math.pow(arr1[q] - centerX, 2) + Math.pow(arr2[q] - centerY, 2))
       if (lengthCheck > centerLength / 2) {
+        centerLength = lengthCheck * 2
         thirdPointX = arr1[q]
         thirdPointY = arr2[q]
       }
     }
   }
+
   if (thirdPointX != null) {
+    // console.log(thirdPointX, thirdPointY)
     var A1 = arr2[chekedPoint2] - arr2[chekedPoint1]
     var B1 = arr1[chekedPoint1] - arr1[chekedPoint2]
 
@@ -107,7 +110,6 @@ function radiusPoint(arr1, arr2) {
 
 var c = document.getElementById('myCanvas')
 var ctx = c.getContext('2d') //створюємо 2d в canvas
-var font_size = '20px'
 
 function drawCircle(x, y, r) {
   ctx.beginPath() //створюємо новий шлях
@@ -124,11 +126,30 @@ function drawPoints(arr1, arr2) {
   }
 }
 
+function writePoints(arr1, arr2) {
+  for (let i = 0; i < arr1.length; i++) {
+    console.log(
+      `Point${i + 1}:  (`,
+      arr1[i] - tabulationForCanvas,
+      ',',
+      arr2[i] - tabulationForCanvas,
+      ')'
+    )
+  }
+}
+
 createCoordinates()
 maxLength(arrayX, arrayY)
 radiusPoint(arrayX, arrayY)
-
-console.log('RadiusX: ', radiusX, ' RadiusY: ', radiusY, ' RadiusLength: ', radius)
-
+writePoints(arrayX, arrayY)
+console.log(
+  'RadiusX: ',
+  radiusX - tabulationForCanvas,
+  ' RadiusY: ',
+  radiusY - tabulationForCanvas,
+  ' RadiusLength: ',
+  radius - tabulationForCanvas
+)
 drawCircle(radiusX, radiusY, radius)
 drawPoints(arrayX, arrayY)
+drawCircle(radiusX, radiusY, 1) // малюємо центр кола
