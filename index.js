@@ -1,8 +1,9 @@
 // Ця програма має малювати найменше описане коло навколо довільних N точок
+
 const arrayX = []
 const arrayY = []
 var centerLength = 0
-const tabulationForCanvas = 500
+const tabulationForCanvas = 300
 const lengthArr = 200
 const pointsLimit = 500
 var centerX

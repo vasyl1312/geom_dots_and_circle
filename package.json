@@ -1,0 +1,25 @@
+{
+  "name": "geom_dots_and_circle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasyl1312/geom_dots_and_circle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vasyl1312/geom_dots_and_circle/issues"
+  },
+  "homepage": "https://github.com/vasyl1312/geom_dots_and_circle#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
