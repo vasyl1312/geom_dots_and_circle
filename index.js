@@ -100,17 +100,30 @@ var c = document.getElementById('myCanvas')
 var ctx = c.getContext('2d') //створюємо 2d в canvas
 
 function drawCircle(x, y, r) {
-  ctx.beginPath() //створюємо новий шлях
+  ctx.fillStyle = '#F2FF00'
+  //створюємо новий шлях
+  ctx.beginPath()
   //малюємо дугу передаючи центр, радіус і кут
-  ctx.arc(x, y, r, 0, 2 * Math.PI)
-  ctx.stroke()
+  ctx.arc(x, y, r, 0, Math.PI * 2)
+  ctx.closePath()
+  ctx.fill()
 }
 
-function drawPoints(arr1, arr2) {
-  for (let i = 0; i < arr1.length; i++) {
+function drawPoints(arr1, arr2, r) {
+  if (r == 5) {
+    ctx.fillStyle = '#c82124'
     ctx.beginPath()
-    ctx.arc(arr1[i], arr2[i], 2, 0, 2 * Math.PI)
-    ctx.stroke()
+    ctx.arc(arr1, arr2, r, 0, Math.PI * 2)
+    ctx.closePath()
+    ctx.fill()
+  }
+
+  for (let i = 0; i < arr1.length; i++) {
+    ctx.fillStyle = '#1008A6'
+    ctx.beginPath()
+    ctx.arc(arr1[i], arr2[i], 5, 0, 2 * Math.PI)
+    ctx.closePath()
+    ctx.fill()
   }
 }
 
@@ -139,4 +152,4 @@ console.log(
 )
 drawCircle(radiusX, radiusY, radius)
 drawPoints(arrayX, arrayY)
-drawCircle(radiusX, radiusY, 1) // малюємо центр кола
+drawPoints(radiusX, radiusY, 5) // малюємо центр кола
